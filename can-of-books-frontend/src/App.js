@@ -1,48 +1,34 @@
-import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
+import React from "react";
 import Header from "./Header";
+import IsLoadingAndError from "./IsLoadingAndError";
+import Footer from "./Footer";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Profile from "./Profile";
 import BookShelf from "./BookShelf";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  BrowserRouter,
-} from "react-router-dom";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from 'react-bootstrap/Container'
 
-export class App extends Component {
+export class App extends React.Component {
   render() {
     return (
-      <div>
-        <Container fluid id="header">
-          <Row>
-            <Col>
-        <h1> Hello</h1>
-            </Col>
-            <Col><Header /></Col>
-          </Row>
-        </Container>
-        <>
-          <BrowserRouter>
-            <Router>
-              <Switch>
-                <Route exact path="/">
-                  <BookShelf />
+      <>
+        <Router>
+          <IsLoadingAndError>
+            <Header />
 
-                  <Profile />
-                </Route>
-                <Route exact path="/profile">
+            <Switch>
+              <Route exact path="/">
+                {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+                <BookShelf />
+              </Route>
 
-                </Route>
-              </Switch>
-            </Router>
-          </BrowserRouter>
-        </>
-      </div>
+              <Route exact path="/profile">
+                {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+                <Profile />
+              </Route>
+            </Switch>
+            <Footer />
+          </IsLoadingAndError>
+        </Router>
+      </>
     );
   }
 }
