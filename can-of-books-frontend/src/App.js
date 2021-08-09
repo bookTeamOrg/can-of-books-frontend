@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Profile from "./Profile";
 import BookShelf from "./BookShelf";
+import  Content  from "./Content";
 
 export class App extends React.Component {
   render() {
@@ -25,6 +26,7 @@ export class App extends React.Component {
                 <Profile />
               </Route>
             </Switch>
+            <Content/>
             <Footer />
           </IsLoadingAndError>
         </Router>

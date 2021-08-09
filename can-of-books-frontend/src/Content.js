@@ -14,8 +14,10 @@ export class Content extends Component {
 
     componentDidMount = () => {
         // the function getIdTokenClaims is a promise based function
+        console.log(this.props);
         this.props.auth0.getIdTokenClaims().then(tokenResponse => {
     
+          console.log(tokenResponse);
           const jwt = tokenResponse.__raw;
     
           const config = {
