@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
+import BookShelf from './BookShelf';
 
 class Profile extends Component {
   render() {
@@ -18,6 +19,8 @@ class Profile extends Component {
            <p>Hello {user.name}</p> 
         <p>Nickname: {user.nickname}</p>
         <p>Email Address: {user.email}</p>
+        <BookShelf/>
+
     </Card.Text>
   </Card.Body>
 </Card>
