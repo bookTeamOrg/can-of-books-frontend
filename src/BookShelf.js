@@ -5,6 +5,7 @@ import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
 import FormModal from "./FormModal";
 import Button from "react-bootstrap/Button";
+import UpdateFormModal from "./UpdateFormModel";
 
 export class BookShelf extends Component {
   constructor(props) {
@@ -32,6 +33,12 @@ export class BookShelf extends Component {
   handelDisplayModal = () => {
     this.setState({ displayModal: !this.state.displayAddModal });
   };
+  handelDisplayUpdateModal = (bookObject) => {
+    this.setState({
+      displayUpdateModal: !this.state.displayUpdateModal,
+      updateBookObject: bookObject,
+    });
+  }
 
   handelAddBookForm = (e) => {
     e.preventDefault();
@@ -64,12 +71,15 @@ export class BookShelf extends Component {
             (book) => book._id !== bookId
           );
           this.setState({
-            cats: tempBookObj,
+            books: tempBookObj,
           });
         }
       })
       .catch((error) => alert(error));
   };
+  updateBooksArrOfObjectState = (newBooksArr) => {
+    this.setState({ book: newBooksArr });
+  }
 
   render() {
     const { isAuthenticated } = this.props.auth0;
@@ -85,6 +95,16 @@ export class BookShelf extends Component {
             handelDisplayModal={this.handelDisplayModal}
             handelSubmitForm={this.handelAddBookForm}
           />
+          {
+          this.state.displayUpdateModal &&
+          <UpdateFormModal
+            show={this.state.displayUpdateModal}
+            handelDisplayModal={this.handelDisplayUpdateModal}
+            bookObject={this.state.updateBookObject}
+            updateBooks={this.updateBooksArrOfObjectState}
+            booksArray={this.state.books}
+          />
+        }
 
           {this.state.books.length && (
             <div>
