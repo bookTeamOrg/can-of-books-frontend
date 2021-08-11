@@ -11,14 +11,15 @@ export class Content extends Component {
             user:{}
         };
     }
-
-    componentDidMount = () => {
+   
+     componentDidMount () {
         // the function getIdTokenClaims is a promise based function
-        console.log(this.props);
+        console.log(this.props.auth0);
         this.props.auth0.getIdTokenClaims().then(tokenResponse => {
     
           console.log(tokenResponse);
           const jwt = tokenResponse.__raw;
+          console.log(jwt);
     
           const config = {
             headers: {
@@ -41,6 +42,7 @@ export class Content extends Component {
       };
 
     render() {
+      console.log(this.props.auth0);
         return (
             <div>
                 <p>
